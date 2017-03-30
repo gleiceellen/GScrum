@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: "MS Trebuchet", helvetica, sans-serif;
+}
+a{
+	text-decoration:none;
+	color: #fffff0;
+	background-color: #FF4500;
+	padding:10px;
+	margin:5px;
+}

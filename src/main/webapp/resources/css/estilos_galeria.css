@@ -1,0 +1,22 @@
+/************************************* Galeria ************************************/
+
+.fig{
+	margin: 5px;
+	width: 300px;
+	border: solid 10px #B20156;
+	background-color: #B20156;
+	float: left;
+}
+.imag{
+	width: inherit;
+}
+.fig:hover{
+	margin-right: 15px;
+	width: 300px;
+	border: solid 10px #FF1A88;
+	background-color: #FF1A88;
+	float: left;
+}
+.imag:hover{
+	width: inherit;
+}

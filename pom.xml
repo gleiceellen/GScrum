@@ -1,0 +1,165 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+
+        <groupId>gleice</groupId>
+        <artifactId>gscrum</artifactId>
+        <version>1.0</version>
+        <packaging>war</packaging>
+        <name>GScrum</name>
+
+        <properties>
+                <version-spring>4.3.6.RELEASE</version-spring>
+                
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+                <maven.compiler.source>1.7</maven.compiler.source>
+                <maven.compiler.target>1.7</maven.compiler.target>
+        </properties>
+        
+        <!-- Lista de repositorios externos -->
+        <repositories>
+                <repository>
+                        <id>jboss</id>
+                        <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+                </repository>
+                <repository>
+                        <id>ibiblio</id>
+                        <url>http://www.ibiblio.org/maven/</url>
+                </repository>
+                <repository>
+                        <id>central</id>
+                        <url>http://repo1.maven.org/maven2</url>
+                </repository>
+        </repositories>
+        
+        <dependencies>
+                <!-- SPRING -->
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                        <version>${version-spring}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                        <version>${version-spring}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                        <version>${version-spring}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-webmvc</artifactId>
+                        <version>${version-spring}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-web</artifactId>
+                        <version>${version-spring}</version>
+                </dependency>
+
+                <!-- BANCO -->
+                <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>6.0.6</version>
+                </dependency>
+
+                <!-- OUTROS -->
+                <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>javax.servlet-api</artifactId>
+                        <version>3.1.0</version>
+                        <scope>provided</scope>
+                </dependency>
+                <dependency>
+                        <groupId>commons-lang</groupId>
+                        <artifactId>commons-lang</artifactId>
+                        <version>2.6</version>
+                </dependency>
+                <dependency>
+                        <groupId>commons-collections</groupId>
+                        <artifactId>commons-collections</artifactId>
+                        <version>3.2.1</version>
+                </dependency>
+                <dependency>
+                        <groupId>commons-fileupload</groupId>
+                        <artifactId>commons-fileupload</artifactId>
+                        <version>1.2.1</version>
+                </dependency>
+                <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>1.2.16</version>
+                </dependency>
+        </dependencies>
+
+        <!-- Configuracoes de versao java, encoding e pastas -->
+        <build>
+                <finalName>${project.artifactId}</finalName>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                                <version>2.3.2</version>
+                                <configuration>
+                                        <source>1.7</source>
+                                        <target>1.7</target>
+                                        <encoding>UTF-8</encoding>
+                                </configuration>
+                        </plugin>
+                         
+                        <plugin>
+                                <artifactId>maven-resources-plugin</artifactId>
+                                <version>2.4</version>
+                                <configuration>
+                                        <encoding>UTF-8</encoding>
+                                </configuration>
+                        </plugin>
+                        
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-plugin</artifactId>
+                                <version>2.12.4</version>
+                                <configuration>
+                                        <encoding>UTF-8</encoding>
+                                        <inputEncoding>UTF-8</inputEncoding>
+                                        <outputEncoding>UTF-8</outputEncoding>
+                                        <argLine>-Dfile.encoding=UTF-8</argLine>
+                                </configuration>
+                        </plugin>
+                        
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-war-plugin</artifactId>
+                                <version>2.1.1</version>
+                                <configuration>
+                                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                                        <archive>
+                                                <manifest>
+                                                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                                </manifest>
+                                                <manifestEntries>
+                                                        <Implementation-Build>${project.version}</Implementation-Build>
+                                                </manifestEntries>
+                                        </archive>
+                                </configuration>
+                        </plugin>
+                </plugins>
+                
+                <resources>
+                        <resource>
+                                <directory>src/main/resources</directory>
+                                <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                                <directory>src/test/resources</directory>
+                                <filtering>true</filtering>
+                        </resource>
+                </resources>
+        </build>
+
+</project>

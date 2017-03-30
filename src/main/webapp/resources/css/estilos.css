@@ -1,0 +1,91 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #ffffff;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: justify;
+}
+
+header{
+	background-color: #00117F;
+	height: 50px;
+	padding:1px;
+	margin-bottom:30px;
+	color: #fffff0;
+}
+select, #memid, #memnome{
+	display:none;
+}
+#titulo{
+	clear:both;
+	width: inherit;
+	height: 40px;
+	padding:5px;
+	text-align: center;
+	background-color:#DCDCDC;
+	margin-bottom: 20px;
+	color: #fffff0;
+	border-bottom: solid 2px #0D2CFE;
+}
+
+form{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+input[type*="submit"]{
+	padding:5px 15px 5px 15px;
+	margin:5px;
+	float: right;
+}
+
+input{
+	padding:5px;
+	margin:5px;
+}
+a{
+	text-decoration: none;
+	background-color: #0D2CFE;
+	padding: 2px;
+	color:#fffff0;
+	text-indent: -9999px;
+}
+
+#rem{
+	background: url("resources/remove.png") no-repeat;
+}
+#alt{
+	background: url("resources/edit.png") no-repeat;
+}
+
+#fina{
+	background-color: #0D2CFE;
+}
+
+table{
+	width:900px;
+	margin:auto;
+}
+
+table tr{
+	padding: 5px;
+	height: 25px;
+	text-align:center;
+}
+
+table th{
+	text-align:center;
+	background-color:#00117F;
+	color: #fffff0;
+}
+
+table tr:nth-child(even){
+	background-color:#ADD8E6;
+}
+
+#container{
+	width:1000px;
+	margin: auto;
+}

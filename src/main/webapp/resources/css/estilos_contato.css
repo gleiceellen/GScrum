@@ -1,0 +1,36 @@
+form{
+	color: #ffffff;
+	width: 700px;
+	border: solid 1px #B20156;
+	background-color: #B20156;
+	padding: 10px;
+	height: 300px;
+	margin: auto;
+}
+
+#formulario{
+	background-color: #d6d6d6;
+	height: 350px;
+	margin-bottom: 100px;
+}
+
+input{
+	margin: auto;
+	padding: 5px;
+}
+
+textarea{
+	margin: auto;
+	padding: 5px;
+}
+
+#botao{
+	float: right;
+	margin-top: 15px;
+	margin-right: 55px;
+	padding: 7px 15px;
+	background-color: #01B1CC;
+	color:#fffff0;
+	font-size: 14px;
+	border: solid 1px #01B1CC;
+}

@@ -1,0 +1,145 @@
+@CHARSET "ISO-8859-1";
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #ffffff;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: justify;
+}
+
+
+/*************************************** Menu ****************************************/
+#menu{
+	float: right;
+}
+
+#menu a{
+	margin: 10px;
+	padding: 15px;
+	background-color: #B20156;
+}
+#menu a:hover{
+	margin: 10px;
+	padding: 15px;
+	background-color: #FF1A88;
+}
+#menu a:link{
+	text-decoration: none;
+	color: #fffff0;
+}
+#menu a:visited{
+	text-decoration: none;
+	color: #fffff0;
+}
+
+/************************************* Corpo da Página ************************************/
+h1{
+	margin: 10px;
+	padding: 10px;
+}
+
+p{
+	margin: 10px;
+	padding: 10px;
+}
+
+button{
+	background-color: #B20156;
+	padding: 10px;
+	border: none;
+	color: #fffff0;
+	font-size: 14px;
+}
+
+figure{
+	width: 250px;
+	height: 200px;
+	float: left;
+	margin: 10px;
+}
+
+img{
+	width: inherit;
+	height: inherit;
+}
+
+#container{
+	background-color: #d6d6d6;
+	margin-bottom: 100px;
+	height: 500px;
+}
+
+#fotos{
+	height: 600px;
+	width: 1010px;
+	margin: auto;
+}
+.textos h1{
+	margin-bottom: 10px;
+}
+.textos{
+	height: 220px;
+	width: 1010px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	/*border: solid 5px #0A9CB2;*/
+	background-color: #fffff0;
+	padding: 10px;
+}
+footer p{
+	color: #2F4F4F;
+	text-align: center;
+}
+
+
+/************************************* Cabeçalho ************************************/
+header{
+	margin: 150px 0 0 0;
+	background-color: #01B1CC;
+	color:#fffff0;
+	height: 60px;
+}
+
+#centro{
+	margin:auto;
+	width: 1010px;
+}
+
+#logo{
+	float: left;
+}
+
+/************************************* Menu Superior ************************************/
+
+.menu_dois{
+	position: absolute;
+	top:50px;
+}
+
+.menu_dois a{
+	margin: 10px;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	display: inline-block;
+}
+
+.menu_dois a:link{
+	text-indent: -9999px;
+}
+
+.face{
+	background: url("../imagens/facebook.png") no-repeat;
+}
+.linkedin{
+	background: url("../imagens/linkedin.png") no-repeat;
+}
+.insta{
+	background: url("../imagens/instagram.png") no-repeat;
+}
+.whats{
+	background: url("../imagens/whatsapp.png") no-repeat;
+}
