@@ -1,27 +1,26 @@
 package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Projeto;
-import gleice.gscrum.util.ConnectionFactory;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProjetoDao {
 
-        private final Connection connection;
-
-        public ProjetoDao() throws SQLException {
-                this.connection = new ConnectionFactory().getConnection();
-        }
+        @Autowired
+        private DataSource datasource;
 
         public void adiciona(Projeto projeto) {
                 String sql = "insert into projeto (nomeProjeto, descricaoProjeto) values (?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, projeto.getNomeProjeto());
                         stmt.setString(2, projeto.getDescricaoProjeto());
                         stmt.execute();
@@ -33,8 +32,7 @@ public class ProjetoDao {
         public List<Projeto> getLista() {
                 try {
                         List<Projeto> projetos = new ArrayList<Projeto>();
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from projeto");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from projeto");
 
                         ResultSet rs = stmt.executeQuery();
 
@@ -72,7 +70,7 @@ public class ProjetoDao {
                 String sql = "delete from projeto where idProjeto = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setLong(1, projeto.getIdProjeto());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -84,7 +82,7 @@ public class ProjetoDao {
                 String sql = "update projeto set nomeProjeto = ?, descricaoProjeto = ? where idProjeto = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, projeto.getNomeProjeto());
                         stmt.setString(2, projeto.getDescricaoProjeto());
                         stmt.setLong(3, projeto.getIdProjeto());
@@ -101,8 +99,7 @@ public class ProjetoDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from projeto where idProjeto = ?");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from projeto where idProjeto = ?");
                         stmt.setLong(1, idProjeto);
 
                         ResultSet rs = stmt.executeQuery();
