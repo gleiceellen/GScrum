@@ -1,5 +1,6 @@
 package gleice.gscrum.web;
 
+import gleice.gscrum.util.GScrumController;
 import gleice.gscrum.dao.ProjetoDao;
 import gleice.gscrum.modelo.Projeto;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProjetoController {
+public class ProjetoController extends GScrumController{
 
         @Autowired
         private ProjetoDao dao;
