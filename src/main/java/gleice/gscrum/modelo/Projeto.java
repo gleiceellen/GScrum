@@ -2,9 +2,9 @@ package gleice.gscrum.modelo;
 
 public class Projeto {
 
-        Long idProjeto;
-        String nomeProjeto;
-        String descricaoProjeto;
+        private Long idProjeto;
+        private String nomeProjeto;
+        private String descricaoProjeto;
 
         public Long getIdProjeto() {
                 return idProjeto;
