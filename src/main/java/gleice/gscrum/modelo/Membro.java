@@ -2,32 +2,32 @@ package gleice.gscrum.modelo;
 
 public class Membro {
 
-        private long idMembro;
-        private long idPessoa;
-        private long idProjeto;
+        private Long idMembro;
+        private Pessoa pessoa;
+        private Projeto projeto;
 
-        public long getIdMembro() {
+        public Long getIdMembro() {
                 return idMembro;
         }
 
-        public void setIdMembro(long idMembro) {
+        public void setIdMembro(Long idMembro) {
                 this.idMembro = idMembro;
         }
 
-        public long getIdPessoa() {
-                return idPessoa;
+        public Pessoa getPessoa() {
+                return pessoa;
         }
 
-        public void setIdPessoa(long idPessoa) {
-                this.idPessoa = idPessoa;
+        public void setPessoa(Pessoa pessoa) {
+                this.pessoa = pessoa;
         }
 
-        public long getIdProjeto() {
-                return idProjeto;
+        public Projeto getProjeto() {
+                return projeto;
         }
 
-        public void setIdProjeto(long idProjeto) {
-                this.idProjeto = idProjeto;
+        public void setProjeto(Projeto projeto) {
+                this.projeto = projeto;
         }
 
 }
