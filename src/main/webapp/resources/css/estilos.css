@@ -12,7 +12,7 @@ header{
 	background-color: #00117F;
 	height: 50px;
 	padding:1px;
-	margin-bottom:30px;
+	margin-bottom:0px;
 	color: #fffff0;
 }
 select, #memid, #memnome{
@@ -50,7 +50,7 @@ a{
 	/*background-color: #0D2CFE;*/
 	padding: 2px;
 	color:#fffff0;
-	text-indent: -9999px;
+	/*text-indent: -9999px;*/
 }
 
 #rem{
@@ -88,4 +88,5 @@ table tr:nth-child(even){
 #container{
 	width:1000px;
 	margin: auto;
+        padding: 10px;
 }

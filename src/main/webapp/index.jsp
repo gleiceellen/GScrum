@@ -33,7 +33,7 @@
 			<h1>Gerenciador Scrum </h1>
 			<p>
 				Fazendo uns testes com Spring, resolvi criar uma ferramenta bem simples para gerenciar projetos Scrum.
-				<form action="listaPessoas">
+				<form action="home">
 					<button>Abrir Gerenciador</button>  
 				</form>
 			</p>

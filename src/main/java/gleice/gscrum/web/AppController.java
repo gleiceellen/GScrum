@@ -17,4 +17,9 @@ public class AppController extends GScrumController {
                 return "Requisicao OK! :)";
         }
 
+        @RequestMapping("/home")
+        public String abrirHome() {
+                return "home";
+        }
+        
 }

@@ -1,19 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-    <%@taglib tagdir="/WEB-INF/tags" prefix="gleice" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<script type="text/javascript" src="resources/js/jquery.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>GScrum</title>
-	<link rel="stylesheet" href="/recursos/css/estilos.css">
-	<link type="text/css" href="css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
-</head>
+<%@include file="partials/cabecalho.jsp" %>
 <body>
 	<script type="text/javascript">
 			
@@ -58,4 +43,4 @@
 	    	</select>
 	</form>
 </body>
-</html>
+<%@include file="partials/rodape.jsp" %>

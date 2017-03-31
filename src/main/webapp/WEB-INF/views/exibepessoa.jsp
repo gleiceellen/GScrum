@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<%@include file="partials/cabecalho.jsp" %>
 <body>
     <h3>Alterar Pessoa</h3>
     <form action="alteraPessoa" method="post">
@@ -14,11 +9,11 @@
 		<input type="text" name="emailPessoa" value="${pessoa.emailPessoa}"><br/>
 		Telefone:<br/>
 		<input type="text" name="telefonePessoa" value="${pessoa.telefonePessoa}"><br/>
-		QualificaÃ§Ã£o:<br/>
+		Qualificação:<br/>
 		<input type="text" name="qualificacaoPessoa" value="${pessoa.qualificacaoPessoa}"><br/>
     
         <input type="hidden" name="idPessoa" value="${pessoa.idPessoa}"/>
         <input type="submit" value="Alterar"/>
     </form>
 </body>
-</html>
+<%@include file="partials/rodape.jsp" %>
