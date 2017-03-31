@@ -18,7 +18,7 @@
         </properties>
         
         <!-- Lista de repositorios externos -->
-        <repositories>
+        <!--        <repositories>
                 <repository>
                         <id>jboss</id>
                         <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
@@ -31,7 +31,20 @@
                         <id>central</id>
                         <url>http://repo1.maven.org/maven2</url>
                 </repository>
+        </repositories>-->
+        
+        <repositories>
+                <repository>
+                        <id>nexus</id>
+                        <url>http://siscondjdev.bbtecno.com.br:7080/nexus/content/groups/public/</url>
+                </repository>
         </repositories>
+        <pluginRepositories>
+                <pluginRepository>
+                        <id>nexus</id>
+                        <url>http://siscondjdev.bbtecno.com.br:7080/nexus/content/groups/public/</url>
+                </pluginRepository>
+        </pluginRepositories>
         
         <dependencies>
                 <!-- SPRING -->
@@ -67,14 +80,31 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>6.0.6</version>
                 </dependency>
-
-                <!-- OUTROS -->
+                <dependency>
+                        <groupId>postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>9.2-1002.jdbc4</version>
+                </dependency>
+            
+                <!-- WEB -->
                 <dependency>
                         <groupId>javax.servlet</groupId>
                         <artifactId>javax.servlet-api</artifactId>
                         <version>3.1.0</version>
                         <scope>provided</scope>
                 </dependency>
+                <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>jstl</artifactId>
+                        <version>1.2</version>
+                </dependency>
+                <dependency>
+                        <groupId>taglibs</groupId>
+                        <artifactId>standard</artifactId>
+                        <version>1.1.2</version>
+                </dependency>
+
+                <!-- OUTROS -->
                 <dependency>
                         <groupId>commons-lang</groupId>
                         <artifactId>commons-lang</artifactId>

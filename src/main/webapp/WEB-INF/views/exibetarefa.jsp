@@ -7,7 +7,7 @@
 <head>
 <script type="text/javascript" src="recursos/js/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 <link type="text/css" rel="stylesheet" href="recursos/estilos.css">
 </head>
 <body>

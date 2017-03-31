@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 </head>
 <body>
 	<h3>Alterar Projeto</h3>
@@ -12,7 +12,7 @@
     	
     	Nome:<br/>
 		<input type="text" name="nomeProjeto" value="${projeto.nomeProjeto}"><br/>
-		Descrição:<br/>
+		Descricao:<br/>
 			<textarea name="descricaoProjeto"cols="100" rows="5"> 
 				${projeto.descricaoProjeto}
 			</textarea>

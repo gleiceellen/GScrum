@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 <link rel="stylesheet" type="text/css" href="resources/css/estilos.css">
 </head>
 <body>
@@ -19,8 +19,8 @@
 		<table>
 			<tr>
 				<th> Nome </th>
-				<th> Descrição </th>
-				<th colspan="2"> Operações </th>
+				<th> Descricao </th>
+				<th colspan="2"> Operacoes </th>
 			</tr>
 				<c:forEach var="p" items="${todosProjetos}">
 					<tr>

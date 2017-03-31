@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script type="text/javascript" src="resources/js/adiciona-membro.js"></script>
-	<title>Insert title here</title>
+	<title>GScrum</title>
 	<link type="text/css" rel="stylesheet" href="resources/css/estilos.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 		<form action="adicionaProject" method="post">
 			Nome: <br/>
 			<input id="nome-pro" type="text" name="nomeProjeto"> <br>
-			Descrição: <br/>
+			Descricao: <br/>
 			<textarea id="desc-pro" name="descricaoProjeto" rows="5" cols="100"></textarea><br />
 			<a id="addmembro" onClick="addtable()" href="#">Add Membro</a>
 			<br/>
@@ -24,7 +24,7 @@
 	    	<table class="entrada">
 	    		<tr>
 	    			<th>Nome do Projeto</th>
-	    			<th>Descrição do Projeto</th>
+	    			<th>Descricao do Projeto</th>
 	    		</tr>
 	    	</table>
 			
@@ -46,7 +46,7 @@
 			<table class="tarefas">
 	    		<tr>
 	    			<th>id</th>
-	    			<th>Descrição da Tarefa</th>
+	    			<th>Descricao da Tarefa</th>
 	    		</tr>
 	    	</table>
 	    	

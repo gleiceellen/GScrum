@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 <link rel="stylesheet" type="text/css" href="resources/css/estilos.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
 				<th> Email </th>
 				<th> Telefone </th>
 				<th> Qualificacao </th>
-				<th colspan="2"> Operações </th>
+				<th colspan="2"> Operacoes </th>
 			</tr>
 				<c:forEach var="p" items="${todasPessoas}">
 					<tr>

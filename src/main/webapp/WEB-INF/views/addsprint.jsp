@@ -8,7 +8,7 @@
 <head>
 	<script type="text/javascript" src="resources/js/jquery.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Adiciona Sprint</title>
+	<title>GScrum</title>
 	<link rel="stylesheet" href="/recursos/css/estilos.css">
 	<link type="text/css" href="css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -27,7 +27,7 @@
 	<jsp:useBean id="daos" class="br.com.gleice.tarefas.dao.ProjetoDao"></jsp:useBean>
 	<form action="adicionaSprint" method="post">
 		
-		Data de Início:<br/>
+		Data de Inicio:<br/>
 		<input type="text" id="datepicker" name="dtInicioSprint" 
 				value="<fmt:formatDate value="${sprint.dtInicioSprint.time}" pattern="dd/MM/yyyy"/>"/>
 		<br/>
@@ -48,7 +48,7 @@
 		<input type="submit" value="Adicionar">
 		<br/><br/>
 		Tarefas:
-		<a href="verTarefasDisponiveis">Ver Tarefas Disponíveis!</a>
+		<a href="verTarefasDisponiveis">Ver Tarefas Disponiveis!</a>
 		<select name="choice" width="20">
 				<c:forEach var="pro" items="${daos.lista}">
 					<option onClick="">

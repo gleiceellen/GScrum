@@ -28,7 +28,7 @@
 	<div id="container">
 		<section class="textos">
 			<figure>
-				<img src="imagens/scrum.jpg">
+				<img src="resources/scrum.jpg">
 			</figure>
 			<h1>Gerenciador Scrum </h1>
 			<p>

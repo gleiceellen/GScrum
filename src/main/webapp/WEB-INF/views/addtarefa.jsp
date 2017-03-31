@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 </head>
 <body>
 <h2 id="titulo" > Nova Tarefa </h2>
 	<form action="adicionaTarefa" method="post">
-		Descrição: <br />
+		Descricao: <br />
 		<textarea name="descricao" rows="5" cols="140"></textarea><br />
 
 		<!-- <input type="checkbox" name="finaliza" value="finalizado" disabled> Finalizado <br/> -->

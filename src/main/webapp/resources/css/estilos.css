@@ -47,17 +47,17 @@ input{
 }
 a{
 	text-decoration: none;
-	background-color: #0D2CFE;
+	/*background-color: #0D2CFE;*/
 	padding: 2px;
 	color:#fffff0;
 	text-indent: -9999px;
 }
 
 #rem{
-	background: url("resources/remove.png") no-repeat;
+/*	background: url("../remove.png") no-repeat;*/
 }
 #alt{
-	background: url("resources/edit.png") no-repeat;
+/*	background: url("../edit.png") no-repeat;*/
 }
 
 #fina{

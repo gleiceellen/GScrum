@@ -5,15 +5,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>	
+	<title>GScrum</title>	
 </head>
 <body>
-<jsp:useBean id="dao" class="br.com.gleice.tarefas.dao.PessoaDao"></jsp:useBean>
+        <%--<jsp:useBean id="dao" class="br.com.gleice.tarefas.dao.PessoaDao"></jsp:useBean>--%>
 
 	<form action="adicionaMembro" method="post">
 		Membro: <br/>
 		<input type="text" name="nomeMembro"><br/> 
-		Função: <br/>
+		Funï¿½ï¿½o: <br/>
 		<input type="text" name="funcaoMembro"><br> 
 		Pessoa: <br/>
 		<select name="choice" width="20">

@@ -6,7 +6,7 @@
         <display-name>GScrum</display-name>
                 
         <servlet>
-                <servlet-name>SisconDJ_Spring_Context</servlet-name>
+                <servlet-name>GScrum_Spring_Context</servlet-name>
                 <servlet-class>
                         org.springframework.web.servlet.DispatcherServlet
                 </servlet-class>
@@ -19,8 +19,8 @@
                 <load-on-startup>1</load-on-startup>
         </servlet>
         <servlet-mapping>
-                <servlet-name>SisconDJ_Spring_Context</servlet-name>
-                <url-pattern>/app/*</url-pattern>
+                <servlet-name>GScrum_Spring_Context</servlet-name>
+                <url-pattern>/</url-pattern>
         </servlet-mapping>
         
         <filter>

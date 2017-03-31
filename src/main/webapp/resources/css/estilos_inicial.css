@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 *{
 	margin: 0;
 	padding: 0;
@@ -34,7 +34,7 @@ body{
 	color: #fffff0;
 }
 
-/************************************* Corpo da Página ************************************/
+/************************************* Corpo da Pï¿½gina ************************************/
 h1{
 	margin: 10px;
 	padding: 10px;
@@ -95,7 +95,7 @@ footer p{
 }
 
 
-/************************************* Cabeçalho ************************************/
+/************************************* Cabeï¿½alho ************************************/
 header{
 	margin: 150px 0 0 0;
 	background-color: #01B1CC;
@@ -132,14 +132,14 @@ header{
 }
 
 .face{
-	background: url("../imagens/facebook.png") no-repeat;
+	background: url("../facebook.png") no-repeat;
 }
 .linkedin{
-	background: url("../imagens/linkedin.png") no-repeat;
+	background: url("../linkedin.png") no-repeat;
 }
 .insta{
-	background: url("../imagens/instagram.png") no-repeat;
+	background: url("../instagram.png") no-repeat;
 }
 .whats{
-	background: url("../imagens/whatsapp.png") no-repeat;
+	background: url("../whatsapp.png") no-repeat;
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>GScrum</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 		<input type="text" name="emailPessoa" size="55px">
 		Telefone:
 		<input type="text" name="telefonePessoa" size="51px">
-		Qualificação:
+		Qualificacao:
 		<input type="text" name="qualificacaoPessoa" size="51px"><br/><br/>
 		<input type="submit" value="Adicionar">
 		
