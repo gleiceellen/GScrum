@@ -1,5 +1,6 @@
 package gleice.gscrum.web;
 
+import gleice.gscrum.util.GScrumController;
 import gleice.gscrum.dao.TarefaDao;
 import gleice.gscrum.modelo.Tarefa;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TarefaController {
+public class TarefaController extends GScrumController{
 
         @RequestMapping("/novaTarefa")
         public String form() {
