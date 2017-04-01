@@ -50,7 +50,7 @@ public class ProjetoDao {
                 }
         }
 
-        private Projeto populaProjeto(ResultSet rs) throws SQLException {
+        public Projeto populaProjeto(ResultSet rs) throws SQLException {
                 Projeto projeto = new Projeto();
 
                 // popula o objeto projeto

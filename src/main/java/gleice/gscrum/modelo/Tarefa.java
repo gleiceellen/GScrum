@@ -10,8 +10,8 @@ public class Tarefa {
         private boolean finalizado;
         @DateTimeFormat(pattern = "dd/MM/yyyy")
         private Calendar dataFinalizacao;
-        private Long idSprint;
-        private Long idPessoa;
+        private Sprint sprint;
+        private Pessoa pessoa;
 
         public Long getIdTarefa() {
                 return idTarefa;
@@ -45,20 +45,20 @@ public class Tarefa {
                 this.dataFinalizacao = dataFinalizacao;
         }
 
-        public Long getIdSprint() {
-                return idSprint;
+        public Sprint getSprint() {
+                return sprint;
         }
 
-        public void setIdSprint(Long idSprint) {
-                this.idSprint = idSprint;
+        public void setsSprint(Sprint sprint) {
+                this.sprint = sprint;
         }
 
-        public Long getIdPessoa() {
-                return idPessoa;
+        public Pessoa getPessoa() {
+                return pessoa;
         }
 
-        public void setIdPessoa(Long idPessoa) {
-                this.idPessoa = idPessoa;
+        public void setPessoa(Pessoa pessoa) {
+                this.pessoa = pessoa;
         }
 
 }

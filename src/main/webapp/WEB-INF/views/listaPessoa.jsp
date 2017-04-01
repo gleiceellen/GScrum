@@ -16,7 +16,7 @@
 				<th> Qualificacao </th>
 				<th colspan="2"> Operacoes </th>
 			</tr>
-				<c:forEach var="p" items="${todasPessoas}">
+				<c:forEach var="p" items="${todosPessoas}">
 					<tr>
 						<td>${p.nomePessoa}</td>
 						<td>${p.emailPessoa}</td>

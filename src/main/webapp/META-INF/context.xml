@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" antiResourceLocking="true" copyXML="true" reloadable="true" path="/gscrum"/>
+<Context antiJARLocking="true" antiResourceLocking="true" copyXML="true" path="/gscrum" reloadable="true"/>

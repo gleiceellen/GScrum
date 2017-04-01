@@ -12,7 +12,7 @@ public class Sprint {
         private Calendar dtFimSprint;
         private String productBacklog;
         private String estadoSprint;
-        private Long idProjeto;
+        private Projeto projeto;
 
         public Long getIdSprint() {
                 return idSprint;
@@ -54,12 +54,12 @@ public class Sprint {
                 this.estadoSprint = estadoSprint;
         }
 
-        public Long getIdProjeto() {
-                return idProjeto;
+        public Projeto getProjeto() {
+                return projeto;
         }
 
-        public void setIdProjeto(Long idProjeto) {
-                this.idProjeto = idProjeto;
+        public void setProjeto(Projeto projeto) {
+                this.projeto = projeto;
         }
 
 }

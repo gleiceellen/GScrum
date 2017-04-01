@@ -1,5 +1,8 @@
 package gleice.gscrum.dao;
 
+import gleice.gscrum.modelo.Pessoa;
+import gleice.gscrum.modelo.Projeto;
+import gleice.gscrum.modelo.Sprint;
 import gleice.gscrum.modelo.Tarefa;
 import gleice.gscrum.util.ConnectionFactory;
 import java.sql.Connection;
@@ -26,8 +29,8 @@ public class TarefaDao {
                         stmt = connection.prepareStatement(sql);
                         stmt.setString(1, tarefa.getDescricao());
                         stmt.setBoolean(2, tarefa.isFinalizado());
-                        stmt.setLong(3, tarefa.getIdSprint());
-                        stmt.setLong(4, tarefa.getIdPessoa());
+                        //stmt.setLong(3, tarefa.getIdSprint());
+                        //stmt.setLong(4, tarefa.getIdPessoa());
                         stmt.execute();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
@@ -63,8 +66,47 @@ public class TarefaDao {
                 tarefa.setIdTarefa(rs.getLong("idTarefa"));
                 tarefa.setDescricao(rs.getString("descricao"));
                 tarefa.setFinalizado(rs.getBoolean("finalizado"));
-                tarefa.setIdSprint(rs.getLong("idSprint"));
-                tarefa.setIdPessoa(rs.getLong("idPessoa"));
+                
+                //Pega id do Sprint no banco
+                Long idSprintBD = rs.getLong("idSprintBD");
+  
+                //monta a sprint
+                PreparedStatement stmt = this.connection
+                                .prepareStatement("select * from sprints where idSprint = ?");
+                Sprint spt = new Sprint();
+                spt.setIdSprint(idSprintBD);
+                Date dataIni = rs.getDate("dtInicioSprint");
+                if (dataIni != null) {
+                        Calendar dataInicio = Calendar.getInstance();
+                        dataInicio.setTime(dataIni);
+                        tarefa.setDataFinalizacao(dataInicio);
+                }
+                Date dataFim = rs.getDate("dtFimSprint");
+                if (dataIni != null) {
+                        Calendar dataFinal = Calendar.getInstance();
+                        dataFinal.setTime(dataFim);
+                        tarefa.setDataFinalizacao(dataFinal);
+                }
+                spt.setEstadoSprint("estadoSprint");
+                spt.setProductBacklog("productBacklog");
+                //spt.setProjeto("idProjeto");
+                
+                tarefa.setsSprint(spt);
+                
+                //Pega id da Pessoa no banco
+                Long idPessoaBD = rs.getLong("idPessoaBD");
+                
+                //monta a pessoa
+                PreparedStatement stmt2 = this.connection
+                                .prepareStatement("select * from pessoa where idPessoa = ?");
+                Pessoa p = new Pessoa();
+                p.setIdPessoa(idPessoaBD);
+                p.setNomePessoa("nomePessoa");
+                p.setEmailPessoa("emailPessoa");
+                p.setTelefonePessoa("telefonePessoa");
+                p.setQualificacaoPessoa("qualificacaoPessoa");
+                
+                tarefa.setPessoa(p);
 
                 // popula a data de finalizacao da tarefa, fazendo a conversao
                 Date data = rs.getDate("dataFinalizacao");
@@ -102,8 +144,8 @@ public class TarefaDao {
                         stmt.setBoolean(2, tarefa.isFinalizado());
                         stmt.setDate(3, tarefa.getDataFinalizacao() != null ? new Date(
                                 tarefa.getDataFinalizacao().getTimeInMillis()) : null);
-                        stmt.setLong(4, tarefa.getIdSprint());
-                        stmt.setLong(5, tarefa.getIdPessoa());
+                        stmt.setLong(4, tarefa.getSprint().getIdSprint());
+                        stmt.setLong(5, tarefa.getPessoa().getIdPessoa());
                         stmt.setLong(6, tarefa.getIdTarefa());
                         stmt.execute();
                 } catch (SQLException e) {
