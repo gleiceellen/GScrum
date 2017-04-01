@@ -1,48 +1,41 @@
 <%@include file="partials/cabecalho.jsp" %>
-<script type="text/javascript" src="resources/js/adiciona-membro.js"></script>
+<script type="text/javascript" src="resources/js/app/adiciona-membro.js"></script>
 <body>
+        <h2 id="titulo" > Novo Projeto </h2>
+        <form action="adicionaProjeto" method="post">
+                Nome:
+                <input id="nome-pro" type="text" name="nomeProjeto"> 
+                <br>
+                
+                Descricao:
+                <textarea id="desc-pro" name="descricaoProjeto" rows="5" cols="100"></textarea>
+                <br />
+                
+                Membros: 
+                <select id="combo_membros" name="choice" width="30">
+                        <c:forEach var="pessoa" items="${pessoas}">
+                                <option value="${pessoa.idPessoa}" qualificacao="${pessoa.qualificacaoPessoa}" email="${pessoa.emailPessoa}">${pessoa.nomePessoa}</option>
+                        </c:forEach>
+                </select>
+                <a href="#" onclick="adicionarMembroTabela()">Incluir Novo Membro</a>
+                <br />
+                
+                <table id="tabela_membros">
+                        <thead>
+                                <tr>
+                                        <th>Id</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Qualificacao</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <%-- Vai ser adicionar pelo Javascript 'adicionarMembroTabela' --%>
+                        </tbody>
+                </table>
+                
+                <input type="submit" value="Adicionar">
+        </form>
 
-	<%--<jsp:useBean id="dao" class="br.com.gleice.tarefas.dao.TarefaDao"></jsp:useBean>--%>
-		<form action="adicionaProject" method="post">
-			Nome: <br/>
-			<input id="nome-pro" type="text" name="nomeProjeto"> <br>
-			Descricao: <br/>
-			<textarea id="desc-pro" name="descricaoProjeto" rows="5" cols="100"></textarea><br />
-			<a id="addmembro" onClick="addtable()" href="#">Add Membro</a>
-			<br/>
-			
-	    	<table class="entrada">
-	    		<tr>
-	    			<th>Nome do Projeto</th>
-	    			<th>Descricao do Projeto</th>
-	    		</tr>
-	    	</table>
-			
-	    	Membro: <br/>
-			<select id="membro" name="choice" width="30">
-				<c:forEach var="tarefa" items="${dao.lista}">
-					<option>
-		    			<c:out value="${tarefa.descricao}"></c:out>
-					</option>
-			    </c:forEach>
-	    	</select>
-	    	<a onClick="add()" href="#">Help</a>
-	    	
-	    	<input id="memid" type="text" value="0">
-			<input id="memnome" type="text" value="-">
-			
-			<a onClick="novaTarefa()" href="#">Add to Project</a>
-			
-			<table class="tarefas">
-	    		<tr>
-	    			<th>id</th>
-	    			<th>Descricao da Tarefa</th>
-	    		</tr>
-	    	</table>
-	    	
-	    	<input type="submit" value="Adicionar">
-			
-		</form>
-	
 </body>
 <%@include file="partials/rodape.jsp" %>
