@@ -1,6 +1,5 @@
 package gleice.gscrum.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,21 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gleice.gscrum.modelo.Pessoa;
-import gleice.gscrum.util.ConnectionFactory;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PessoaDao {
 
-        private final Connection connection;
-
-        public PessoaDao() throws SQLException {
-                this.connection = new ConnectionFactory().getConnection();
+        @Autowired
+        private DataSource datasource;
+        
+        public void adicionarOuAlterar(Pessoa pessoa){
+                if(pessoa.getIdPessoa() == null){
+                        this.adiciona(pessoa);
+                }else{
+                        this.altera(pessoa);
+                }
         }
 
-        public void adiciona(Pessoa pessoa) {
+        private void adiciona(Pessoa pessoa) {
                 String sql = "insert into pessoa (nomePessoa, emailPessoa, telefonePessoa, qualificacaoPessoa) values (?,?,?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, pessoa.getNomePessoa());
                         stmt.setString(2, pessoa.getEmailPessoa());
                         stmt.setString(3, pessoa.getTelefonePessoa());
@@ -36,8 +43,7 @@ public class PessoaDao {
         public List<Pessoa> getLista() {
                 try {
                         List<Pessoa> pessoas = new ArrayList<>();
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from pessoa");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from pessoa");
 
                         ResultSet rs = stmt.executeQuery();
 
@@ -75,8 +81,7 @@ public class PessoaDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from pessoa where idPessoa = ?");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from pessoa where idPessoa = ?");
                         stmt.setLong(1, idPessoa);
 
                         ResultSet rs = stmt.executeQuery();
@@ -119,7 +124,7 @@ public class PessoaDao {
                 String sql = "delete from pessoa where idPessoa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setLong(1, pessoa.getIdPessoa());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -127,11 +132,11 @@ public class PessoaDao {
                 }
         }
 
-        public void altera(Pessoa pessoa) {
+        private void altera(Pessoa pessoa) {
                 String sql = "update pessoa set nomePessoa = ?, telefonePessoa = ?, emailPessoa = ?, qualificacaoPessoa = ? where idPessoa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, pessoa.getNomePessoa());
                         stmt.setString(2, pessoa.getTelefonePessoa());
                         stmt.setString(3, pessoa.getEmailPessoa());
