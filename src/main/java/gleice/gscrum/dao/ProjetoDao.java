@@ -15,6 +15,14 @@ public class ProjetoDao {
 
         @Autowired
         private DataSource datasource;
+        
+        public void adicionarOuAlterar(Projeto projeto){
+                if(projeto.getIdProjeto() == null){
+                        this.adiciona(projeto);
+                }else{
+                        this.altera(projeto);
+                }
+        }
 
         public void adiciona(Projeto projeto) {
                 String sql = "insert into projeto (nomeProjeto, descricaoProjeto) values (?,?)";

@@ -13,24 +13,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TarefaDao {
+        @Autowired
+        private DataSource datasource;
 
-        private final Connection connection;
-
-        public TarefaDao() throws SQLException {
-                this.connection = new ConnectionFactory().getConnection();
+        public void adicionarOuAlterar(Tarefa tarefa){
+                if(tarefa.getIdTarefa() == null){
+                        this.adiciona(tarefa);
+                }else{
+                        this.altera(tarefa);
+                }
         }
-
+        
         public void adiciona(Tarefa tarefa) {
                 String sql = "insert into tarefa (descricao, finalizado, idSprint, idPessoa) values (?,?,?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, tarefa.getDescricao());
                         stmt.setBoolean(2, tarefa.isFinalizado());
-                        //stmt.setLong(3, tarefa.getIdSprint());
-                        //stmt.setLong(4, tarefa.getIdPessoa());
+                        stmt.setLong(3, tarefa.getSprint().getIdSprint());
+                        stmt.setLong(4, tarefa.getPessoa().getIdPessoa());
                         stmt.execute();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
@@ -40,8 +48,7 @@ public class TarefaDao {
         public List<Tarefa> getLista() {
                 try {
                         List<Tarefa> tarefas = new ArrayList<Tarefa>();
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from tarefa");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from tarefa");
 
                         ResultSet rs = stmt.executeQuery();
 
@@ -68,45 +75,28 @@ public class TarefaDao {
                 tarefa.setFinalizado(rs.getBoolean("finalizado"));
                 
                 //Pega id do Sprint no banco
-                Long idSprintBD = rs.getLong("idSprintBD");
+                Long idSprintBD = rs.getLong("idSprint");
   
                 //monta a sprint
-                PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from sprints where idSprint = ?");
-                Sprint spt = new Sprint();
-                spt.setIdSprint(idSprintBD);
-                Date dataIni = rs.getDate("dtInicioSprint");
-                if (dataIni != null) {
-                        Calendar dataInicio = Calendar.getInstance();
-                        dataInicio.setTime(dataIni);
-                        tarefa.setDataFinalizacao(dataInicio);
+                PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from sprints where idSprint = '"+idSprintBD+"'");
+                ResultSet rs2 = stmt.executeQuery();
+                SprintDao daos = new SprintDao();
+                while(rs2.next()){
+                    tarefa.setsSprint(daos.populaSprint(rs2));
                 }
-                Date dataFim = rs.getDate("dtFimSprint");
-                if (dataIni != null) {
-                        Calendar dataFinal = Calendar.getInstance();
-                        dataFinal.setTime(dataFim);
-                        tarefa.setDataFinalizacao(dataFinal);
-                }
-                spt.setEstadoSprint("estadoSprint");
-                spt.setProductBacklog("productBacklog");
-                //spt.setProjeto("idProjeto");
-                
-                tarefa.setsSprint(spt);
+                rs2.close(); 
                 
                 //Pega id da Pessoa no banco
-                Long idPessoaBD = rs.getLong("idPessoaBD");
+                Long idPessoaBD = rs.getLong("idPessoa");
                 
                 //monta a pessoa
-                PreparedStatement stmt2 = this.connection
-                                .prepareStatement("select * from pessoa where idPessoa = ?");
-                Pessoa p = new Pessoa();
-                p.setIdPessoa(idPessoaBD);
-                p.setNomePessoa("nomePessoa");
-                p.setEmailPessoa("emailPessoa");
-                p.setTelefonePessoa("telefonePessoa");
-                p.setQualificacaoPessoa("qualificacaoPessoa");
-                
-                tarefa.setPessoa(p);
+                PreparedStatement stmt2 = this.datasource.getConnection().prepareStatement("select * from pessoa where idPessoa = '"+idPessoaBD+"'");
+                ResultSet rs3 = stmt.executeQuery();
+                PessoaDao daop = new PessoaDao();
+                while(rs3.next()){
+                    tarefa.setPessoa(daop.populaPessoa(rs3));
+                }
+                rs3.close();
 
                 // popula a data de finalizacao da tarefa, fazendo a conversao
                 Date data = rs.getDate("dataFinalizacao");
@@ -127,7 +117,7 @@ public class TarefaDao {
                 String sql = "delete from tarefa where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setLong(1, tarefa.getIdTarefa());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -139,7 +129,7 @@ public class TarefaDao {
                 String sql = "update tarefa set descricao = ?, finalizado = ?, dataFinalizacao = ?, idSprint = ?, idPessoa = ? where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setString(1, tarefa.getDescricao());
                         stmt.setBoolean(2, tarefa.isFinalizado());
                         stmt.setDate(3, tarefa.getDataFinalizacao() != null ? new Date(
@@ -160,8 +150,7 @@ public class TarefaDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.connection
-                                .prepareStatement("select * from tarefa where idTarefa = ?");
+                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from tarefa where idTarefa = ?");
                         stmt.setLong(1, idTarefa);
 
                         ResultSet rs = stmt.executeQuery();
@@ -188,7 +177,7 @@ public class TarefaDao {
                 String sql = "update tarefa set finalizado = ?, dataFinalizacao = ? where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = connection.prepareStatement(sql);
+                        stmt = this.datasource.getConnection().prepareStatement(sql);
                         stmt.setBoolean(1, true);
                         stmt.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
                         stmt.setLong(3, idTarefa);

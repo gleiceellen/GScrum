@@ -1,4 +1,4 @@
-<%@include file="partials/cabecalho.jsp" %>
+'<%@include file="partials/cabecalho.jsp" %>
 <body>
 <h2 id="titulo" > Nova Tarefa </h2>
 	<form action="adicionaTarefa" method="post">

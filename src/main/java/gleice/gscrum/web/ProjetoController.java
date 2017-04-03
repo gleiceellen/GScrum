@@ -18,18 +18,18 @@ public class ProjetoController extends GScrumController{
 
         @Autowired
         private PessoaDao daoPessoa;
-        
-        @RequestMapping("/adicionaProjeto")
-        public String adiciona(Projeto projeto) {
-                dao.adiciona(projeto);
-                return "redirect:listaProjetos";
-        }
 
         @RequestMapping("/listaProjetos")
         public String lista(Model model) {
                 model.addAttribute("todosProjetos", dao.getLista());
                 model.addAttribute("pessoas", daoPessoa.getLista());
                 return "listaProjetos";
+        }
+        
+        @RequestMapping("/adicionaProjeto")
+        public String adiciona(Projeto projeto) {
+                dao.adicionarOuAlterar(projeto);
+                return "redirect:listaProjetos";
         }
 
         @RequestMapping("/removeProjeto")

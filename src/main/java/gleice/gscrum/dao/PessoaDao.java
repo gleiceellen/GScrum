@@ -61,7 +61,7 @@ public class PessoaDao {
                 }
         }
 
-        private Pessoa populaPessoa(ResultSet rs) throws SQLException {
+        public Pessoa populaPessoa(ResultSet rs) throws SQLException {
                 Pessoa pessoa = new Pessoa();
 
                 // popula o objeto pessoa

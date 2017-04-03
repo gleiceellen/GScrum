@@ -5,6 +5,7 @@ import gleice.gscrum.dao.TarefaDao;
 import gleice.gscrum.modelo.Tarefa;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,103 +15,42 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TarefaController extends GScrumController{
 
-        @RequestMapping("/novaTarefa")
-        public String form() {
-                return "addtarefa";
-        }
+    @Autowired
+    private TarefaDao dao;
+    
+    @RequestMapping("/listaTarefas")
+    public String lista(Model model){
+        model.addAttribute("todasTarefas", dao.getLista());
+        return "listaTarefas";
+    }
+    
+    @RequestMapping("/adicionaTarefa")
+    public String adiciona(Tarefa tarefa) {
+        dao.adicionarOuAlterar(tarefa);
+        return "redirect:listaTarefas";
+    }
 
-        @RequestMapping("/verTarefasDisponiveis")
-        public String ver() {
-                try {
-                        TarefaDao dao = new TarefaDao();
-                        List<Tarefa> tarefas = dao.getLista();
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                }
-                return "TarefasToSprint";
-        }
+    @RequestMapping("/removeTarefa")
+    public String remove(Tarefa tarefa) {
+        dao.remove(tarefa);
+        return "redirect:listaTarefas";
+    }
 
-        @RequestMapping("/adicionaTarefa")
-        public String adiciona(Tarefa tarefa) {
+    @RequestMapping("/mostraTarefa")
+    public String mostra(Long idTarefa, Model model) {
+        model.addAttribute("tarefa", dao.buscaPorId(idTarefa));
+        return this.lista(model);
+    }
 
-                try {
+    @RequestMapping("/alteraTarefa")
+    public String altera(Tarefa tarefa) {
+        dao.altera(tarefa);
+        return "redirect:listaTarefas";
+    }
 
-                        TarefaDao dao = new TarefaDao();
-                        dao.adiciona(tarefa);
-
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                }
-
-                return "redirect:listaTarefas";
-        }
-
-        @RequestMapping("/listaTarefas")
-        public ModelAndView lista() throws SQLException {
-
-                TarefaDao dao = new TarefaDao();
-
-                List<Tarefa> tarefas = dao.getLista();
-
-                ModelAndView mv = new ModelAndView("listaTarefas");
-                mv.addObject("todasTarefas", tarefas);
-                return mv;
-        }
-
-        @RequestMapping("/removeTarefa")
-        public String remove(Tarefa tarefa) {
-
-                try {
-
-                        TarefaDao dao = new TarefaDao();
-                        dao.remove(tarefa);
-
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                }
-
-                return "redirect:listaTarefas";
-        }
-
-        @RequestMapping("/mostraTarefa")
-        public String mostra(Long idTarefa, Model model) {
-
-                try {
-
-                        TarefaDao dao = new TarefaDao();
-                        model.addAttribute("tarefa", dao.buscaPorId(idTarefa));
-
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-
-                return "exibetarefa";
-        }
-
-        @RequestMapping("/alteraTarefa")
-        public String altera(Tarefa tarefa) {
-                try {
-
-                        TarefaDao dao = new TarefaDao();
-                        dao.altera(tarefa);
-
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                }
-                return "redirect:listaTarefas";
-        }
-
-        @RequestMapping("/finalizaTarefa")
-        public void finaliza(Long idTarefa) {
-                try {
-
-                        TarefaDao dao = new TarefaDao();
-                        dao.finaliza(idTarefa);
-
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                }
-
-        }
+    @RequestMapping("/finalizaTarefa")
+    public void finaliza(Long idTarefa) {
+        dao.finaliza(idTarefa);
+    }
 
 }

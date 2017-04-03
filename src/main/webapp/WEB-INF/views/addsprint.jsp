@@ -3,19 +3,22 @@
     <div id="container">
 	<form action="adicionaSprint" method="post">
 		
-		Data de Inicio:<br/>
+		Data de Inicio:
 		<input type="text" name="dtini"> 
-		<br/>
-		Data de Fim:<br/>
+		
+		Data de Fim:
                 <input type="text" name="dtfim"> 
-		<br/>
-		Product Backlog:<br/>
+		
+		Product Backlog:
 		<input type="text" name="pbacklog">
-                <br/>
+                
 		Estado Sprint:<br/>
                 <input type="radio" name="estsprint" value="1">Iniciado
                 <input type="radio" name="estsprint" value="2">Executando
                 <input type="radio" name="estsprint" value="3">Finalizado
+                <br/>
+                
+                <input type="submit" value="Adicionar">
                 
 	</form>
     </div>
