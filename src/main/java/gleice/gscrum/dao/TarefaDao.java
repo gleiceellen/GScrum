@@ -1,11 +1,6 @@
 package gleice.gscrum.dao;
 
-import gleice.gscrum.modelo.Pessoa;
-import gleice.gscrum.modelo.Projeto;
-import gleice.gscrum.modelo.Sprint;
 import gleice.gscrum.modelo.Tarefa;
-import gleice.gscrum.util.ConnectionFactory;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +17,12 @@ public class TarefaDao {
         @Autowired
         private DataSource datasource;
 
+        @Autowired
+        private SprintDao daoSprint;
+        
+        @Autowired
+        private PessoaDao daoPessoa;
+        
         public void adicionarOuAlterar(Tarefa tarefa){
                 if(tarefa.getIdTarefa() == null){
                         this.adiciona(tarefa);
@@ -75,28 +76,10 @@ public class TarefaDao {
                 tarefa.setFinalizado(rs.getBoolean("finalizado"));
                 
                 //Pega id do Sprint no banco
-                Long idSprintBD = rs.getLong("idSprint");
-  
-                //monta a sprint
-                PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from sprints where idSprint = '"+idSprintBD+"'");
-                ResultSet rs2 = stmt.executeQuery();
-                SprintDao daos = new SprintDao();
-                while(rs2.next()){
-                    tarefa.setsSprint(daos.populaSprint(rs2));
-                }
-                rs2.close(); 
+                tarefa.setsSprint( daoSprint.buscaPorId(rs.getLong("idSprint")) );
                 
                 //Pega id da Pessoa no banco
-                Long idPessoaBD = rs.getLong("idPessoa");
-                
-                //monta a pessoa
-                PreparedStatement stmt2 = this.datasource.getConnection().prepareStatement("select * from pessoa where idPessoa = '"+idPessoaBD+"'");
-                ResultSet rs3 = stmt.executeQuery();
-                PessoaDao daop = new PessoaDao();
-                while(rs3.next()){
-                    tarefa.setPessoa(daop.populaPessoa(rs3));
-                }
-                rs3.close();
+                tarefa.setPessoa( daoPessoa.buscaPorId(rs.getLong("idPessoa")) );
 
                 // popula a data de finalizacao da tarefa, fazendo a conversao
                 Date data = rs.getDate("dataFinalizacao");

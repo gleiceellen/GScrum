@@ -1,8 +1,6 @@
 package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Usuario;
-import gleice.gscrum.util.ConnectionFactory;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

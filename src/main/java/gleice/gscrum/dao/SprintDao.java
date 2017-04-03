@@ -1,10 +1,6 @@
 package gleice.gscrum.dao;
 
-import gleice.gscrum.dao.ProjetoDao;
-import gleice.gscrum.modelo.Projeto;
 import gleice.gscrum.modelo.Sprint;
-import gleice.gscrum.util.ConnectionFactory;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +17,9 @@ public class SprintDao {
         
         @Autowired
         private DataSource datasource;
+        
+        @Autowired
+        private ProjetoDao daoProjeto;
         
         public void adicionarOuAlterar(Sprint sprint){
                 if(sprint.getIdSprint() == null){
@@ -74,18 +73,7 @@ public class SprintDao {
                 spt.setIdSprint(rs.getLong("idSprint"));
                 spt.setProductBacklog(rs.getString("productBacklog"));
                 spt.setEstadoSprint(rs.getString("estadoSprint"));
-
-                //Pega id do banco
-                Long idProjetoBD = rs.getLong("idProjeto");
-                
-                //monta a sprint
-                PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from projeto where idProjeto = '"+idProjetoBD+"'");
-                ResultSet rs2 = stmt.executeQuery();
-                ProjetoDao daop = new ProjetoDao();
-                while(rs2.next()){
-                    spt.setProjeto(daop.populaProjeto(rs2));
-                }
-                rs2.close();
+                spt.setProjeto( daoProjeto.buscaPorId(rs.getLong("idProjeto"), false) );
                 return spt;
         }
          
