@@ -34,13 +34,14 @@ public class MembroDao {
                         stmt.setLong(1, membro.getPessoa().getIdPessoa());
                         stmt.setLong(2, membro.getProjeto().getIdProjeto());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
         }
 
         public void remove(Membro membro) {
-
                 if (membro.getIdMembro() == null) {
                         throw new IllegalStateException("Membro nao existe, o id esta nulo!");
                 }
@@ -51,6 +52,8 @@ public class MembroDao {
                         stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, membro.getIdMembro());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -65,6 +68,8 @@ public class MembroDao {
                         stmt.setLong(2, membro.getProjeto().getIdProjeto());
                         stmt.setLong(3, membro.getIdMembro());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }

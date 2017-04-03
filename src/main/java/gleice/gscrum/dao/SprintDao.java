@@ -37,6 +37,8 @@ public class SprintDao {
                         stmt.setString(4, sprint.getEstadoSprint());
                         stmt.setLong(5, sprint.getProjeto().getIdProjeto());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -86,6 +88,8 @@ public class SprintDao {
                         stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, spt.getIdSprint());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -104,6 +108,8 @@ public class SprintDao {
                         stmt.setString(4, spt.getEstadoSprint());
                         stmt.setLong(5, spt.getProjeto().getIdProjeto());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }

@@ -39,6 +39,9 @@ public class ProjetoDao {
                                 return rs.getLong(1);
                         }
                         
+                        rs.close();
+                        stmt.close();
+                        
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -90,6 +93,8 @@ public class ProjetoDao {
                         stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, projeto.getIdProjeto());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -104,6 +109,8 @@ public class ProjetoDao {
                         stmt.setString(2, projeto.getDescricaoProjeto());
                         stmt.setLong(3, projeto.getIdProjeto());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }

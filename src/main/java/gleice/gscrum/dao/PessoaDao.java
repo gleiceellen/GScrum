@@ -31,6 +31,8 @@ public class PessoaDao {
                         stmt.setString(3, pessoa.getTelefonePessoa());
                         stmt.setString(4, pessoa.getQualificacaoPessoa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -123,6 +125,8 @@ public class PessoaDao {
                         stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, pessoa.getIdPessoa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -139,6 +143,8 @@ public class PessoaDao {
                         stmt.setString(4, pessoa.getQualificacaoPessoa());
                         stmt.setLong(5, pessoa.getIdPessoa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }

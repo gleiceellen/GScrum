@@ -39,6 +39,8 @@ public class TarefaDao {
                         stmt.setLong(3, tarefa.getSprint().getIdSprint());
                         stmt.setLong(4, tarefa.getPessoa().getIdPessoa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -101,6 +103,8 @@ public class TarefaDao {
                         stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, tarefa.getIdTarefa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -119,6 +123,8 @@ public class TarefaDao {
                         stmt.setLong(5, tarefa.getPessoa().getIdPessoa());
                         stmt.setLong(6, tarefa.getIdTarefa());
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
@@ -163,6 +169,8 @@ public class TarefaDao {
                         stmt.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
                         stmt.setLong(3, idTarefa);
                         stmt.execute();
+                        
+                        stmt.close();
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }

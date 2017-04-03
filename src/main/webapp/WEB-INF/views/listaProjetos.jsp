@@ -20,7 +20,7 @@
                                         <td>${p.descricaoProjeto}</td>
                                         <td>
                                                 <c:forEach var="m" items="${p.membrosAssociados}">
-                                                        ${m.pessoa.nome},
+                                                        ${m.pessoa.nomePessoa},
                                                 </c:forEach>
                                         </td>
                                         <td><a id="rem" href="removeProjeto?idProjeto=${p.idProjeto}"><img src="resources/remove.png"></a></td>

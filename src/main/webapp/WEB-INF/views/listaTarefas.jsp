@@ -46,7 +46,7 @@
                                     <fmt:formatDate value="${tarefa.dataFinalizacao.time}"
                                                                 pattern="dd/MM/yyyy"/>
                                 </td>
-                                <td>${tarefa.pessoa.pessoaNome}</td>
+                                <td>${tarefa.pessoa.nomePessoa}</td>
                                 <td>${tarefa.sprint.productBacklog}</td>
                                 <td>
                                     <a id="rem" href="removeTarefa?idTarefa=${tarefa.idTarefa}"> <img src="resources/remove.png"> </a>
