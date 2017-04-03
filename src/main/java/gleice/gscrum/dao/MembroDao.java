@@ -2,19 +2,16 @@ package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Membro;
 import gleice.gscrum.modelo.Projeto;
+import gleice.gscrum.util.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MembroDao {
 
-        @Autowired
-        private DataSource datasource;
-        
         @Autowired
         private PessoaDao daoPessoa;
         
@@ -33,7 +30,7 @@ public class MembroDao {
                 String sql = "insert into membros (idpessoa, idprojeto) values (?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, membro.getPessoa().getIdPessoa());
                         stmt.setLong(2, membro.getProjeto().getIdProjeto());
                         stmt.execute();
@@ -51,7 +48,7 @@ public class MembroDao {
                 String sql = "delete from membros where idMembro = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, membro.getIdMembro());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -63,7 +60,7 @@ public class MembroDao {
                 String sql = "update membros set idpessoa = ?, idprojeto where idMembro = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, membro.getPessoa().getIdPessoa());
                         stmt.setLong(2, membro.getProjeto().getIdProjeto());
                         stmt.setLong(3, membro.getIdMembro());
@@ -79,7 +76,7 @@ public class MembroDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from membros where idProjeto = ?");
+                        PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from membros where idProjeto = ?");
                         stmt.setLong(1, projeto.getIdProjeto());
 
                         ResultSet rs = stmt.executeQuery();

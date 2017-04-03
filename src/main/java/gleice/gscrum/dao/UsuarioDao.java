@@ -1,16 +1,13 @@
 package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Usuario;
+import gleice.gscrum.util.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 @Repository
 public class UsuarioDao {
-    @Autowired
-    private DataSource datasource;
 
     public boolean existeUsuario(Usuario usuario) {
 
@@ -19,7 +16,7 @@ public class UsuarioDao {
         }
 
         try {
-            PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from usuarios where login = ? and senha = ?");
+            PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from usuarios where login = ? and senha = ?");
             stmt.setString(1, usuario.getLogin());
             stmt.setString(2, usuario.getSenha());
             ResultSet rs = stmt.executeQuery();

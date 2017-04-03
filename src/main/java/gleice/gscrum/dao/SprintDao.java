@@ -1,6 +1,7 @@
 package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Sprint;
+import gleice.gscrum.util.ConnectionFactory;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,15 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class SprintDao {
-        
-        @Autowired
-        private DataSource datasource;
         
         @Autowired
         private ProjetoDao daoProjeto;
@@ -33,7 +30,7 @@ public class SprintDao {
                 String sql = "insert into sprints (dtInicioSprint, dtFimSprint, productBacklog, estadoSprint, idProjeto) values (?,?,?,?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setDate(1, new Date(Calendar.getInstance().getTimeInMillis()));
                         stmt.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
                         stmt.setString(3, sprint.getProductBacklog());
@@ -48,7 +45,7 @@ public class SprintDao {
         public List<Sprint> getLista(){
                 try {
                         List<Sprint> sprints = new ArrayList<Sprint>();
-                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from sprints");
+                        PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from sprints");
 
                         ResultSet rs = stmt.executeQuery();
 
@@ -86,7 +83,7 @@ public class SprintDao {
                 String sql = "delete from sprints where idSprint = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, spt.getIdSprint());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -98,7 +95,7 @@ public class SprintDao {
                 String sql = "update sprints set dtInicioSprint = ?, dtFimSprint = ?, productBacklog = ?, estadoSprint = ?, idProjeto = ? where idSprint = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setDate(1, spt.getDtInicioSprint()!= null ? new Date(
                                 spt.getDtInicioSprint().getTimeInMillis()) : null);
                         stmt.setDate(2, spt.getDtFimSprint()!= null ? new Date(
@@ -119,7 +116,7 @@ public class SprintDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from sprints where idSprint = ?");
+                        PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from sprints where idSprint = ?");
                         stmt.setLong(1, idSprint);
 
                         ResultSet rs = stmt.executeQuery();

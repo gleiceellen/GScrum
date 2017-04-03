@@ -1,6 +1,7 @@
 package gleice.gscrum.dao;
 
 import gleice.gscrum.modelo.Tarefa;
+import gleice.gscrum.util.ConnectionFactory;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,14 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class TarefaDao {
-        @Autowired
-        private DataSource datasource;
 
         @Autowired
         private SprintDao daoSprint;
@@ -35,7 +33,7 @@ public class TarefaDao {
                 String sql = "insert into tarefa (descricao, finalizado, idSprint, idPessoa) values (?,?,?,?)";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setString(1, tarefa.getDescricao());
                         stmt.setBoolean(2, tarefa.isFinalizado());
                         stmt.setLong(3, tarefa.getSprint().getIdSprint());
@@ -49,7 +47,7 @@ public class TarefaDao {
         public List<Tarefa> getLista() {
                 try {
                         List<Tarefa> tarefas = new ArrayList<Tarefa>();
-                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from tarefa");
+                        PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from tarefa");
 
                         ResultSet rs = stmt.executeQuery();
 
@@ -100,7 +98,7 @@ public class TarefaDao {
                 String sql = "delete from tarefa where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setLong(1, tarefa.getIdTarefa());
                         stmt.execute();
                 } catch (SQLException e) {
@@ -112,7 +110,7 @@ public class TarefaDao {
                 String sql = "update tarefa set descricao = ?, finalizado = ?, dataFinalizacao = ?, idSprint = ?, idPessoa = ? where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setString(1, tarefa.getDescricao());
                         stmt.setBoolean(2, tarefa.isFinalizado());
                         stmt.setDate(3, tarefa.getDataFinalizacao() != null ? new Date(
@@ -133,7 +131,7 @@ public class TarefaDao {
                 }
 
                 try {
-                        PreparedStatement stmt = this.datasource.getConnection().prepareStatement("select * from tarefa where idTarefa = ?");
+                        PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement("select * from tarefa where idTarefa = ?");
                         stmt.setLong(1, idTarefa);
 
                         ResultSet rs = stmt.executeQuery();
@@ -160,7 +158,7 @@ public class TarefaDao {
                 String sql = "update tarefa set finalizado = ?, dataFinalizacao = ? where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
-                        stmt = this.datasource.getConnection().prepareStatement(sql);
+                        stmt = ConnectionFactory.getConnection().prepareStatement(sql);
                         stmt.setBoolean(1, true);
                         stmt.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
                         stmt.setLong(3, idTarefa);

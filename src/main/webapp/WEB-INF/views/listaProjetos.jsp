@@ -19,9 +19,9 @@
                                         <td>${p.nomeProjeto}</td>
                                         <td>${p.descricaoProjeto}</td>
                                         <td>
-                                                <%--<c:forEach var="m" items="${p.membrosAssociados}">
+                                                <c:forEach var="m" items="${p.membrosAssociados}">
                                                         ${m.pessoa.nome},
-                                                </c:forEach>--%>
+                                                </c:forEach>
                                         </td>
                                         <td><a id="rem" href="removeProjeto?idProjeto=${p.idProjeto}"><img src="resources/remove.png"></a></td>
                                         <td><a id="alt" href="mostraProjeto?idProjeto=${p.idProjeto}"><img src="resources/edit.png"></a></td>
