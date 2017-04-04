@@ -49,7 +49,7 @@ public class Tarefa {
                 return sprint;
         }
 
-        public void setsSprint(Sprint sprint) {
+        public void setSprint(Sprint sprint) {
                 this.sprint = sprint;
         }
 

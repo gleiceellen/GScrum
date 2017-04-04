@@ -76,7 +76,7 @@ public class TarefaDao {
                 tarefa.setFinalizado(rs.getBoolean("finalizado"));
                 
                 //Pega id do Sprint no banco
-                tarefa.setsSprint( daoSprint.buscaPorId(rs.getLong("idSprint")) );
+                tarefa.setSprint( daoSprint.buscaPorId(rs.getLong("idSprint")) );
                 
                 //Pega id da Pessoa no banco
                 tarefa.setPessoa( daoPessoa.buscaPorId(rs.getLong("idPessoa")) );

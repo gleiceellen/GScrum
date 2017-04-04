@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS tarefa;
 CREATE TABLE tarefa (
   idTarefa SERIAL NOT NULL  ,
   descricao varchar(255) DEFAULT NULL,
-  finalizado int DEFAULT NULL,
+  finalizado boolean DEFAULT NULL,
   dataFinalizacao date DEFAULT NULL,
   idSprint bigint DEFAULT NULL,
   idPessoa bigint DEFAULT NULL,
@@ -73,11 +73,11 @@ INSERT INTO projeto VALUES
 INSERT INTO sprints VALUES (1,'cadastros','iniciado','','',NULL);
 
 INSERT INTO tarefa VALUES 
-(1,' \r\n                \r\n                \r\n                       Aprender spring\r\n     \r\n            \r\n            \r\n            ',1,'2017-03-28',NULL,NULL),
-(2,' \r\n                \r\n               Aprender JSF\r\n        \r\n        \r\n            \r\n            \r\n            ',1,'2017-03-28',NULL,NULL),
-(3,' \r\n                       Criar Diagrama de Classes\r\n       \r\n        \r\n            ',1,'2017-03-28',NULL,NULL),
-(4,'                Criar Diagrama de Sequencia\r\n     \r\n        ',1,'2017-03-28',NULL,NULL),
-(5,'                Desenvolver meu sistema\r\n     \r\n        ',1,'2017-03-28',NULL,NULL),
-(6,'                Criar banco de dados\r\n        \r\n        ',1,'2017-03-28',NULL,NULL),
-(7,'Criacao dos htmls',1,'2017-03-28',NULL,NULL),
-(8,'Teste tamanho',1,'2017-03-28',NULL,NULL);
+(1,' \r\n                \r\n                \r\n                       Aprender spring\r\n     \r\n            \r\n            \r\n            ',false,'2017-03-28',NULL,NULL),
+(2,' \r\n                \r\n               Aprender JSF\r\n        \r\n        \r\n            \r\n            \r\n            ',false,'2017-03-28',NULL,NULL),
+(3,' \r\n                       Criar Diagrama de Classes\r\n       \r\n        \r\n            ',false,'2017-03-28',NULL,NULL),
+(4,'                Criar Diagrama de Sequencia\r\n     \r\n        ',false,'2017-03-28',NULL,NULL),
+(5,'                Desenvolver meu sistema\r\n     \r\n        ',true,'2017-03-28',NULL,NULL),
+(6,'                Criar banco de dados\r\n        \r\n        ',true,'2017-03-28',NULL,NULL),
+(7,'Criacao dos htmls',false,'2017-03-28',NULL,NULL),
+(8,'Teste tamanho',false,'2017-03-28',NULL,NULL);
