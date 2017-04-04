@@ -3,12 +3,14 @@
 <body>
         <h2 id="titulo" > Novo Projeto </h2>
         <form action="adicionaProjeto" method="post">
-                Nome:
+        <section id="add">
+            <div id="faixa"></div>
+            Nome:
                 <input id="nome-pro" type="text" name="nomeProjeto"> 
                 <br>
                 
                 Descricao:
-                <textarea id="desc-pro" name="descricaoProjeto" rows="5" cols="100"></textarea>
+                <textarea id="desc-pro" name="descricaoProjeto" rows="5" cols="76"></textarea>
                 <br />
                 
                 Membros: 
@@ -17,9 +19,11 @@
                                 <option value="${pessoa.idPessoa}" qualificacao="${pessoa.qualificacaoPessoa}" email="${pessoa.emailPessoa}">${pessoa.nomePessoa}</option>
                         </c:forEach>
                 </select>
-                <a href="#" onclick="adicionarMembroTabela()">Incluir Novo Membro</a>
+                <a href="#" id ="lk_simples" onclick="adicionarMembroTabela()">Incluir Novo Membro</a>
                 <br />
-                
+        </section>
+        <section id="lista">
+               <div id="faixa"></div>
                 <table id="tabela_membros">
                         <thead>
                                 <tr>
@@ -34,7 +38,8 @@
                         </tbody>
                 </table>
                 
-                <input type="submit" value="Adicionar">
+                <input type="submit" id="addpro" value="Adicionar">
+        </section>
         </form>
 
 </body>

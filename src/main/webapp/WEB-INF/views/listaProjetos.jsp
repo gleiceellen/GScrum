@@ -6,6 +6,7 @@
         <jsp:include page="partials/menu.jsp" />
         <div id="container">
                 <jsp:include page="addprojeto.jsp" />
+                <section id="lista-pro"> 
                 <h2 id="titulo" > Projetos Cadastrados </h2>
                 <table>
                         <tr>
@@ -35,6 +36,7 @@
                                 </c:otherwise>
                         </c:choose>
                 </table>
+                </section>
         </div>	
 </body>
 <%@include file="partials/rodape.jsp" %>
