@@ -25,7 +25,7 @@ public class ProjetoDao {
                 }
         }
 
-        public Long adiciona(Projeto projeto) {
+        private Long adiciona(Projeto projeto) {
                 String sql = "insert into projeto (nomeProjeto, descricaoProjeto) values (?,?)";
                 PreparedStatement stmt;
                 try {
@@ -100,7 +100,7 @@ public class ProjetoDao {
                 }
         }
 
-        public Long altera(Projeto projeto) {
+        private Long altera(Projeto projeto) {
                 String sql = "update projeto set nomeProjeto = ?, descricaoProjeto = ? where idProjeto = ?";
                 PreparedStatement stmt;
                 try {

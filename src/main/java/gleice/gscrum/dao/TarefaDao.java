@@ -29,7 +29,7 @@ public class TarefaDao {
                 }
         }
         
-        public void adiciona(Tarefa tarefa) {
+        private void adiciona(Tarefa tarefa) {
                 String sql = "insert into tarefa (descricao, finalizado, idSprint, idPessoa) values (?,?,?,?)";
                 PreparedStatement stmt;
                 try {
@@ -110,7 +110,7 @@ public class TarefaDao {
                 }
         }
 
-        public void altera(Tarefa tarefa) {
+        private void altera(Tarefa tarefa) {
                 String sql = "update tarefa set descricao = ?, finalizado = ?, dataFinalizacao = ?, idSprint = ?, idPessoa = ? where idTarefa = ?";
                 PreparedStatement stmt;
                 try {
