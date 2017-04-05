@@ -156,7 +156,6 @@ public class TarefaDao {
         }
 
         public void finaliza(Long idTarefa) {
-
                 if (idTarefa == null) {
                         throw new IllegalStateException("Id da tarefa nao deve ser nula.");
                 }

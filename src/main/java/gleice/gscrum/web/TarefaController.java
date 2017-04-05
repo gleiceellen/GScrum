@@ -5,6 +5,8 @@ import gleice.gscrum.dao.SprintDao;
 import gleice.gscrum.util.GScrumController;
 import gleice.gscrum.dao.TarefaDao;
 import gleice.gscrum.modelo.Tarefa;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -53,8 +55,9 @@ public class TarefaController extends GScrumController {
 
         @ResponseBody
         @RequestMapping(value = "/finalizaTarefa", method = RequestMethod.POST)
-        public void finaliza(Long idTarefa) {
+        public String finaliza(Long idTarefa) {
                 dao.finaliza(idTarefa);
+                return new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         }
 
 }

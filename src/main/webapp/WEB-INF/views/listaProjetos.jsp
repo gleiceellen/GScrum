@@ -16,8 +16,8 @@
                                 <th colspan="2"> Operacoes </th>
                         </tr>
                         <c:choose>
-                                <c:when test="${fn:length(todosProjetos) gt 0}">
-                                        <tr><td colspan="6">Nenhum projeto adicionado.</td></tr>
+                                <c:when test="${fn:length(todosProjetos) eq 0}">
+                                        <tr><td colspan="5">Nenhum projeto adicionado.</td></tr>
                                 </c:when>
                                 <c:otherwise>
                                         <c:forEach var="p" items="${todosProjetos}">

@@ -42,7 +42,7 @@ public class ProjetoController extends GScrumController{
         @RequestMapping("/removeProjeto")
         public String remove(Projeto projeto) {
                 dao.remove(projeto);
-                return "redirect:listaTarefas";
+                return "redirect:listaProjetos";
         }
 
         @RequestMapping("/mostraProjeto")
@@ -55,10 +55,12 @@ public class ProjetoController extends GScrumController{
         
         private void vincular(Long idProjeto, List<Membro> pessoas){
                 for(Membro pessoaTela : pessoas){
-                        Membro m = new Membro();
-                        m.setPessoa( this.daoPessoa.buscaPorId(pessoaTela.getPessoa().getIdPessoa()) );
-                        m.setProjeto( this.dao.buscaPorId(idProjeto, true) );
-                        this.daoMembro.adicionarOuAlterar(m);
+                        if(pessoaTela.getPessoa()!=null){
+                                Membro m = new Membro();
+                                m.setPessoa( this.daoPessoa.buscaPorId(pessoaTela.getPessoa().getIdPessoa()) );
+                                m.setProjeto( this.dao.buscaPorId(idProjeto, true) );
+                                this.daoMembro.adicionarOuAlterar(m);
+                        }
                 }
         }
 }
